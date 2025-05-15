@@ -1,11 +1,8 @@
 body {
   font-family: sans-serif;
   text-align: center;
-  background-image: url(https://www.niallbrady.com/wp-content/uploads/2019/04/img0_3840x2160.jpg);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: #cbcbcb;
+  background-color: #d0f0c0; /* 浅绿色背景 */
+  color: #333;
 }
 
 .scoreboard {
@@ -28,9 +25,9 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  box-shadow: inset 0 0 10px #00000055;
+  box-shadow: inset 0 0 10px #00000033;
 }
 
 .mole {
