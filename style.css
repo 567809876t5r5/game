@@ -1,7 +1,16 @@
 body {
   font-family: sans-serif;
   text-align: center;
-  background-color: #f0f0f0;
+  background-image: url('https://images.unsplash.com/photo-1617196036901-fd681b7d6e1f?auto=format&fit=crop&w=1470&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+}
+
+.scoreboard {
+  font-size: 20px;
+  margin-top: 10px;
 }
 
 .game-container {
@@ -19,6 +28,9 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  box-shadow: inset 0 0 10px #00000055;
 }
 
 .mole {
@@ -38,18 +50,4 @@ body {
 
 .mole.hit {
   transform: scale(1.4);
-}
-
-.scoreboard {
-  font-size: 20px;
-  margin-top: 10px;
-}
-body {
-  font-family: sans-serif;
-  text-align: center;
-  background-image: url('https://images.unsplash.com/photo-1584395630827-860eee694d7b?auto=format&fit=crop&w=1470&q=80');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: #fff; /* 可选：让文字更清晰 */
 }
