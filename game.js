@@ -3,6 +3,7 @@ const scoreEl = document.getElementById("score");
 const timeEl = document.getElementById("time");
 const startBtn = document.getElementById("startBtn");
 const hitSound = document.getElementById("hitSound");
+const winSound = document.getElementById("winSound");
 
 let score = 0;
 let timeLeft = 30;
@@ -22,18 +23,24 @@ function startGame() {
   timeEl.textContent = timeLeft;
   startBtn.disabled = true;
 
-  moleTimer = setInterval(showRandomMole, 1600);
+  moleTimer = setInterval(showRandomMole, 800);
   countdownTimer = setInterval(() => {
     timeLeft--;
     timeEl.textContent = timeLeft;
     if (timeLeft <= 0) {
-      clearInterval(moleTimer);
-      clearInterval(countdownTimer);
-      alert("时间到！你的得分是：" + score);
-      moles.forEach(mole => mole.style.display = "none");
-      startBtn.disabled = false;
+      endGame();
     }
   }, 1000);
+}
+
+function endGame() {
+  clearInterval(moleTimer);
+  clearInterval(countdownTimer);
+  moles.forEach(mole => mole.style.display = "none");
+  winSound.currentTime = 0;
+  winSound.play();
+  alert("时间到！你的得分是：" + score);
+  startBtn.disabled = false;
 }
 
 moles.forEach(mole => {
