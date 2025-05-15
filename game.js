@@ -2,8 +2,10 @@ const moles = document.querySelectorAll(".mole");
 const scoreEl = document.getElementById("score");
 const timeEl = document.getElementById("time");
 const startBtn = document.getElementById("startBtn");
-const hitSound = document.getElementById("hitSound");
+
+const hitSound = document.getElementById("hitSound"); // 更强打击音效
 const winSound = document.getElementById("winSound");
+const tickSound = document.getElementById("tickSound"); // 倒计时提示音效
 
 let score = 0;
 let timeLeft = 30;
@@ -27,6 +29,13 @@ function startGame() {
   countdownTimer = setInterval(() => {
     timeLeft--;
     timeEl.textContent = timeLeft;
+
+    // 倒计时提示音（最后5秒）
+    if (timeLeft <= 5 && timeLeft > 0) {
+      tickSound.currentTime = 0;
+      tickSound.play();
+    }
+
     if (timeLeft <= 0) {
       endGame();
     }
