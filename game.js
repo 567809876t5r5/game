@@ -1,71 +1,34 @@
-const moles = document.querySelectorAll(".mole");
-const scoreEl = document.getElementById("score");
-const timeEl = document.getElementById("time");
-const startBtn = document.getElementById("startBtn");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>打地鼠游戏 - 完整版</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>打地鼠游戏</h1>
+  <div class="scoreboard">
+    得分：<span id="score">0</span> ｜ 剩余时间：<span id="time">30</span> 秒
+  </div>
+  <button id="startBtn">开始游戏</button>
+  <div class="game-container">
+    <div class="hole"><div class="mole">🐹</div>🕳️</div>
+    <div class="hole"><div class="mole">🐹</div>🕳️</div>
+    <div class="hole"><div class="mole">🐹</div>🕳️</div>
+    <div class="hole"><div class="mole">🐹</div>🕳️</div>
+    <div class="hole"><div class="mole">🐹</div>🕳️</div>
+    <div class="hole"><div class="mole">🐹</div>🕳️</div>
+    <div class="hole"><div class="mole">🐹</div>🕳️</div>
+    <div class="hole"><div class="mole">🐹</div>🕳️</div>
+    <div class="hole"><div class="mole">🐹</div>🕳️</div>
+  </div>
 
-const hitSound = document.getElementById("hitSound"); // 更强打击音效
-const winSound = document.getElementById("winSound");
-const tickSound = document.getElementById("tickSound"); // 倒计时提示音效
+  <!-- 音效：打击、胜利、倒计时滴答 -->
+  <audio id="hitSound" src="https://cdn.pixabay.com/download/audio/2022/03/11/audio_b1f5a2fdbf.mp3?filename=punch-boxing-hit-1-173079.mp3"></audio>
+  <audio id="winSound" src="https://cdn.pixabay.com/download/audio/2021/09/13/audio_01fb349dd2.mp3?filename=success-1-6297.mp3"></audio>
+  <audio id="tickSound" src="https://cdn.pixabay.com/download/audio/2023/03/14/audio_3e922f6fbc.mp3?filename=clock-tick-111379.mp3"></audio>
 
-let score = 0;
-let timeLeft = 30;
-let moleTimer;
-let countdownTimer;
-
-function showRandomMole() {
-  moles.forEach(mole => mole.style.display = "none");
-  const index = Math.floor(Math.random() * moles.length);
-  moles[index].style.display = "flex";
-}
-
-function startGame() {
-  score = 0;
-  timeLeft = 30;
-  scoreEl.textContent = score;
-  timeEl.textContent = timeLeft;
-  startBtn.disabled = true;
-
-  moleTimer = setInterval(showRandomMole, 800);
-  countdownTimer = setInterval(() => {
-    timeLeft--;
-    timeEl.textContent = timeLeft;
-
-    // 倒计时提示音（最后5秒）
-    if (timeLeft <= 5 && timeLeft > 0) {
-      tickSound.currentTime = 0;
-      tickSound.play();
-    }
-
-    if (timeLeft <= 0) {
-      endGame();
-    }
-  }, 1000);
-}
-
-function endGame() {
-  clearInterval(moleTimer);
-  clearInterval(countdownTimer);
-  moles.forEach(mole => mole.style.display = "none");
-  winSound.currentTime = 0;
-  winSound.play();
-  alert("时间到！你的得分是：" + score);
-  startBtn.disabled = false;
-}
-
-moles.forEach(mole => {
-  mole.addEventListener("click", () => {
-    if (mole.style.display === "flex") {
-      score++;
-      scoreEl.textContent = score;
-      mole.classList.add("hit");
-      hitSound.currentTime = 0;
-      hitSound.play();
-      setTimeout(() => {
-        mole.classList.remove("hit");
-        mole.style.display = "none";
-      }, 150);
-    }
-  });
-});
-
-startBtn.addEventListener("click", startGame);
+  <script src="game.js"></script>
+</body>
+</html>
